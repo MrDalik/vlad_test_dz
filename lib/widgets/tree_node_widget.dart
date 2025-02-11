@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../models/tree_node.dart';
@@ -18,7 +19,9 @@ class TreeNodeWidget extends StatelessWidget {
           if (node.children.isNotEmpty)
             IconButton(
               icon: Icon(node.isExpanded ? Icons.remove : Icons.add),
-              onPressed: () => treeProvider.toggleExpansion(node),
+              onPressed: () {
+                treeProvider.toggleExpansion(node);
+              },
             ),
           Expanded(
             child: TextFormField(
@@ -35,7 +38,9 @@ class TreeNodeWidget extends StatelessWidget {
           ),
           Checkbox(
             value: node.isChecked,
-            onChanged: (_) => treeProvider.toggleCheck(node),
+            onChanged: (_) {
+              treeProvider.toggleCheck(node);
+            },
           ),
           IconButton(
             icon: Icon(Icons.add),
@@ -57,6 +62,7 @@ class TreeNodeWidget extends StatelessWidget {
       ),
     );
   }
+
   TreeNode? _findParent(TreeNode currentNode, TreeNode nodeToFind) {
     for (var child in currentNode.children) {
       if (child == nodeToFind) {

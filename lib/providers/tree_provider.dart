@@ -9,7 +9,6 @@ class TreeProvider with ChangeNotifier {
 
   void toggleCheck(TreeNode node) {
     node.toggleCheck();
-    node.propagateCheck(node.isChecked);
     notifyListeners();
   }
 
@@ -25,7 +24,8 @@ class TreeProvider with ChangeNotifier {
   }
 
   void toggleExpansion(TreeNode node) {
-    node.isExpanded = !node.isExpanded;
+    node.toggleExpansion();
+    print("Node ${node.text} isExpanded: ${node.isExpanded}");
     notifyListeners();
   }
 }
